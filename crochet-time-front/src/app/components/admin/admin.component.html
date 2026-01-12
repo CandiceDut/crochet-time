@@ -1,1 +1,43 @@
-<p>admin works!</p>
+<body class='container'>
+    <h1>Articles disponibles : </h1>
+
+    
+        <!--création tableau enregistrements-->
+        <table class="table">
+            <tr>
+                <th>Titre</th>
+                <th>Prix</th>
+                <th>Quantité</th>
+                <th>Description</th>
+                <th class=d-none> Edit<th>
+                <th class=d-none> Suppr<th>
+            </tr>
+            
+            <!-- Afficher  enregistrements -->
+            <tbody>
+                <tr>
+                    <td>" . $row['titre'] . "</td>
+                    <td>" . $row['prix'] . "</td>
+                    <td>" . $row['quantite'] . "</td>
+                    <td>" . $row['description'] . "</td>
+                    <td> 
+                        <form action='editer.php' method='post'>
+                        <input type='hidden' name='id' value=' . $row[id] . '>
+                        <input type='submit' class='btn btn-info' name='edit' value='Modifier'>
+                        </form>
+                    </td>   
+                    <td> 
+                        <form action='suppression.php' method='post'>
+                        <input type='hidden' name='id' value=' . $row[id] . '>
+                        <input type='submit' class='btn btn-danger' name='suppr' value='Supprimer'>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <button class="btn btn-primary" onclick="window.location.href=''">Ajouter</button> <br>
+    
+   <br><a href="">Déconnection</a>
+
+</body>

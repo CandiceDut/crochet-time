@@ -1,1 +1,51 @@
-<p>panier works!</p>
+<body class='container'>
+    <h1>Articles choisis :</h1>
+
+    <table class='table'>
+        <tr>
+            <th>Titre </th>
+            <th> Qte </th>
+            <th> Prix (en €) </th>
+            <th class=d-none> Suppr<th>
+        </tr>
+        
+        <!-- Afficher  enregistrements -->
+        <tbody>
+            <tr>
+                <td>" . $row['titre'] . "</td>
+                <td>
+                    <form action='panier.php' method='post' style='display:inline-block;'>
+                        <input type='hidden' name='id' value=' . $row[id] . '>
+                        <button type='submit' name='action' value='moins' class='btn btn-light'>-</button>
+                    </form>
+                    " . $_SESSION['panier'][$row['id']] . "
+                    <form action='panier.php' method='post' style='display:inline-block;'>
+                        <input type='hidden' name='id' value='" . $row[id] . "'>
+                        <input type='hidden' name='qt' value='" . $row[quantite] . "'>
+                        <button type='submit' name='action' value='plus' class='btn btn-light'>+</button>
+                    </form>
+                </td>
+                <td>" . $row['prix'] . "</td>
+                <td> 
+                    <form action='suppPanier.php' method='post'>
+                        <input type='hidden' name='id' value='" . $row[id] . "'>
+                        <input type='submit' class='btn btn-danger' name='suppr' value='X'>
+                    </form>
+                </td>
+            </tr>
+            $total = $total + $row['prix']* $_SESSION['panier'][$row['id']];
+        </tbody>
+    </table>
+        <br>
+    <!-- Afficher le prix total  -->
+    echo "prix total : " . $total . "€";?>
+    
+    <form method="post" action="paiement.php">
+        <input type="hidden" name="prix" value="<?= $total ?>"><br>
+        <button type="submit" class="btn btn-secondary">Payer</button>
+    </form>
+    <br><a href="./logout.php">Tout supprimer</a>
+    <!-- Si pas de doudou -->
+    echo "Votre panier est vide.";
+
+</body>
