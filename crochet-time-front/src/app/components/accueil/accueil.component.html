@@ -1,0 +1,36 @@
+<body class='container'>
+    <main>
+        <h1>Les doudous en crochet</h1>
+        <div  class="row row-cols-5">                
+                <!-- <a href="article.php?image=<?=$item['urlimage']?>&id=<?=$item['id']?>&titre=<?=$item['titre']?>&prix=<?=$item['prix']?>&quantite=<?=$item['quantite']?>&desc=<?=$item['description']?>" class="col mb-3"> -->
+                <div class="card" style="width: 13rem;">
+                    <!-- <img src="imagesPetites.php?image=<?= $item['urlimage'] ?>" class="card-img-top" alt=""> -->
+                    <div class="card-body bg-primary">
+                        <h5>$item['titre']<br>$item['prix']€ </h5>
+                        <p> Qte : $item['quantite'] </p>
+                        <form method="post" action="ajoutPanier.php">
+                            <input type="hidden" name="id_article" value=" $item['id'] ">
+                            <input type="hidden" name="qt_article" value=" $item['quantite'] ">
+                            <button type="submit" class="btn btn-secondary">Ajouter au panier</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- </a> -->
+        </div>
+    </main>
+    <div id="notifications"></div>
+    
+<!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="Notify.js"></script> -->
+<!-- <script>
+    $(document).ready(function() {
+        var notification = <?php echo json_encode($_SESSION['notification'] ?? null); ?>;
+        if (notification) {
+            Notify(notification,null,null,'success');
+            // Supprime la notification de la session après l'affichage
+            <?php unset($_SESSION['notification']); ?>
+        }
+    });
+</script>
+</body>
+</html> -->
